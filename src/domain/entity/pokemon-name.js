@@ -15,7 +15,7 @@ export class PokemonName {
 
   /**
    * @param {string} n
-   * @return {Result<PokemonName, 'invalid'>}
+   * @return {import("./result").Result<PokemonName, 'invalid'>}
    */
   static tryToPokemonName(n) {
     if (typeof n === "string" && n.trim()) {

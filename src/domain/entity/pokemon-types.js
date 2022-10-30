@@ -15,7 +15,7 @@ export class PokemonTypes {
 
   /**
    * @param {string[]} n
-   * @return {Result<PokemonTypes, 'invalid'>}
+   * @return {import("./result").Result<PokemonTypes, 'invalid'>}
    */
   static tryToPokemonTypes(n) {
     /**
@@ -49,7 +49,7 @@ export class PokemonTypes {
 }
 
 /**
- * @typedef {'Electric'} Type
+ * @typedef {'Electric' | 'Fire'} Type
  */
 
 class PokemonType {
@@ -69,7 +69,7 @@ class PokemonType {
 
   /**
    * @param {string} n
-   * @return {Result<PokemonType, 'invalid'>}
+   * @return {import("./result").Result<PokemonType, 'invalid'>}
    */
   static tryToPokemonType(n) {
     if (PokemonType.isValidType(n)) {
@@ -94,7 +94,7 @@ class PokemonType {
     /**
      * @type {Type[]}
      */
-    const validTypes = ["Electric"];
+    const validTypes = ["Electric", "Fire"];
     return validTypes.some((t) => t === n);
   };
 }

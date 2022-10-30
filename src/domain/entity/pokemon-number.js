@@ -15,7 +15,7 @@ export class PokemonNumber {
 
   /**
    * @param {number} n
-   * @return {Result<PokemonNumber, 'invalid'>}
+   * @return {import("./result").Result<PokemonNumber, 'invalid'>}
    */
   static tryToPokemonNumber(n) {
     if (typeof n === "number" && n > 0 && n < 899) {
