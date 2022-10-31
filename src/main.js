@@ -1,5 +1,9 @@
+import { createApp } from "./api/index.js";
+import { InMemoryPokemonRepo } from "./repo/in-memory-repo.js";
+
 function main() {
-  console.log("Hello, world!");
+  const repo = new InMemoryPokemonRepo();
+  createApp(repo);
 }
 
 main();
