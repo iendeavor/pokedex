@@ -1,8 +1,7 @@
 import { Pokemon } from "../entity/pokemon.js";
-import { PokemonNumber } from "../entity/pokemon-number.js";
 
 /**
- * @typedef {import("../entity/result").Result<PokemonNumber, 'Conflict' | 'Unknown'>} InsertResult
+ * @typedef {import("../entity/result").Result<Pokemon, 'Conflict' | 'Unknown'>} InsertResult
  */
 
 export class PokemonRepo {

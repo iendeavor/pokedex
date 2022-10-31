@@ -30,6 +30,10 @@ export const responseRouteCreatePokemon = (app, repo) => {
       }
     }
 
-    res.status(200).json({ number: req.body.number });
+    res.status(200).json({
+      number: result.value.number,
+      name: result.value.name,
+      types: result.value.types,
+    });
   });
 };

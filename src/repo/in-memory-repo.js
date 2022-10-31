@@ -37,7 +37,7 @@ export class InMemoryPokemonRepo extends PokemonRepo {
     this.pokemons.push(pokemon);
     return {
       status: "fulfilled",
-      value: pokemon.number,
+      value: pokemon,
     };
   }
 
@@ -54,6 +54,9 @@ export class InMemoryPokemonRepo extends PokemonRepo {
     );
   }
 
+  /**
+   * @private
+   */
   withError() {
     this.error = true;
   }

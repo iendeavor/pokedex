@@ -10,13 +10,13 @@ export class Pokemon {
   number;
 
   /**
-   * @private
+   * @readonly
    * @type {PokemonName}
    */
   name;
 
   /**
-   * @private
+   * @readonly
    * @type {PokemonTypes}
    */
   types;

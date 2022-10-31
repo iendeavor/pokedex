@@ -1,3 +1,5 @@
+import { unwrap } from "./result.js";
+
 export class PokemonNumber {
   /**
    * @private
@@ -37,5 +39,13 @@ export class PokemonNumber {
    */
   static fromPokemonNumber(n) {
     return n.number;
+  }
+
+  /**
+   * @private
+   * @returns {PokemonNumber}
+   */
+  static pikachu() {
+    return new PokemonNumber(25);
   }
 }

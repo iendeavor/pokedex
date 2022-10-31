@@ -1,3 +1,5 @@
+import { unwrap } from "./result.js";
+
 export class PokemonName {
   /**
    * @private
@@ -29,5 +31,37 @@ export class PokemonName {
         reason: "invalid",
       };
     }
+  }
+
+  /**
+   * @param {PokemonName} n
+   * @returns {string}
+   */
+  static fromPokemonName(n) {
+    return n.name;
+  }
+
+  /**
+   * @private
+   * @returns {PokemonName}
+   */
+  static pikachu() {
+    return new PokemonName("Pikachu");
+  }
+
+  /**
+   * @private
+   * @returns {PokemonName}
+   */
+  static charmander() {
+    return new PokemonName("Charmander");
+  }
+
+  /**
+   * @private
+   * @returns {PokemonName}
+   */
+  static bad() {
+    return new PokemonName("");
   }
 }

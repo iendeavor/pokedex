@@ -1,3 +1,5 @@
+import { unwrap } from "./result.js";
+
 export class PokemonTypes {
   /**
    * @private
@@ -46,6 +48,30 @@ export class PokemonTypes {
       value: new PokemonTypes(types),
     };
   }
+
+  /**
+   * @param {PokemonTypes} n
+   * @return {string[]}
+   */
+  static fromPokemonTypes(n) {
+    return n.types.map((type) => PokemonType.fromPokemonType(type));
+  }
+
+  /**
+   * @private
+   * @returns {PokemonTypes}
+   */
+  static pikachu() {
+    return new PokemonTypes([unwrap(PokemonType.tryToPokemonType("Electric"))]);
+  }
+
+  /**
+   * @private
+   * @returns {PokemonTypes}
+   */
+  static charmander() {
+    return new PokemonTypes([unwrap(PokemonType.tryToPokemonType("Fire"))]);
+  }
 }
 
 /**
@@ -83,6 +109,15 @@ class PokemonType {
         reason: "invalid",
       };
     }
+  }
+
+  /**
+   *
+   * @param {PokemonType} n
+   * @returns {string}
+   */
+  static fromPokemonType(n) {
+    return n.type;
   }
 
   /**

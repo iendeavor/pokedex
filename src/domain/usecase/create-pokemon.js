@@ -14,7 +14,7 @@ import { unwrap } from "../entity/result.js";
  */
 
 /**
- * @typedef {import("../entity/result").Result<number, 'BadRequest' | 'Conflict' | 'Unknown'>} Res
+ * @typedef {import("../entity/result").Result<{ number: number, name: string, types: string[]}, 'BadRequest' | 'Conflict' | 'Unknown'>} Res
  */
 
 /**
@@ -63,6 +63,10 @@ export const execute = (req) => {
 
   return {
     status: "fulfilled",
-    value: req.number,
+    value: {
+      number: PokemonNumber.fromPokemonNumber(result.value.number),
+      name: PokemonName.fromPokemonName(result.value.name),
+      types: PokemonTypes.fromPokemonTypes(result.value.types),
+    },
   };
 };
