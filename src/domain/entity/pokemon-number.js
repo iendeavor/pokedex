@@ -48,4 +48,20 @@ export class PokemonNumber {
   static pikachu() {
     return new PokemonNumber(25);
   }
+
+  /**
+   * @private
+   * @returns {PokemonNumber}
+   */
+  static charmander() {
+    return new PokemonNumber(4);
+  }
+
+  /**
+   * @private
+   * @returns {PokemonNumber}
+   */
+  static bad() {
+    return new PokemonNumber(0);
+  }
 }

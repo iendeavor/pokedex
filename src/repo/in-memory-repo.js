@@ -55,6 +55,89 @@ export class InMemoryPokemonRepo extends PokemonRepo {
   }
 
   /**
+   * @returns {import("../domain/repo/pokemon-repo.js").FetchAllResult}
+   */
+  fetchAll() {
+    if (this.error) {
+      return {
+        status: "rejected",
+        reason: "Unknown",
+      };
+    }
+
+    return {
+      status: "fulfilled",
+      value: this.pokemons
+        .slice()
+        .sort(
+          (a, b) =>
+            PokemonNumber.fromPokemonNumber(a.number) -
+            PokemonNumber.fromPokemonNumber(b.number)
+        ),
+    };
+  }
+
+  /**
+   * @param {number} number
+   * @returns {import("../domain/repo/pokemon-repo.js").FetchResult}
+   */
+  fetch(number) {
+    if (this.error) {
+      return {
+        status: "rejected",
+        reason: "Unknown",
+      };
+    }
+
+    const pokemon = this.pokemons.find(
+      (pokemon) => PokemonNumber.fromPokemonNumber(pokemon.number) === number
+    );
+    if (pokemon === undefined) {
+      return {
+        status: "rejected",
+        reason: "NotFound",
+      };
+    }
+
+    return {
+      status: "fulfilled",
+      value: pokemon,
+    };
+  }
+
+  /**
+   * @param {number} number
+   * @returns {import("../domain/repo/pokemon-repo.js").DeleteResult}
+   */
+  delete(number) {
+    if (this.error) {
+      return {
+        status: "rejected",
+        reason: "Unknown",
+      };
+    }
+
+    const index = this.pokemons.findIndex(
+      (pokemon) => PokemonNumber.fromPokemonNumber(pokemon.number) === number
+    );
+    if (index === -1) {
+      return {
+        status: "rejected",
+        reason: "NotFound",
+      };
+    }
+
+    this.pokemons = [
+      ...this.pokemons.slice(0, index),
+      ...this.pokemons.slice(index + 1),
+    ];
+    return {
+      status: "fulfilled",
+      value: undefined,
+    };
+  }
+
+  /**
    * @private
    */
   withError() {
