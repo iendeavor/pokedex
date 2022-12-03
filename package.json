@@ -3,6 +3,7 @@
   "name": "pokedex",
   "type": "module",
   "scripts": {
+    "serve": "node src/main.js",
     "test": "jest",
     "lint": "prettier --write ."
   },
