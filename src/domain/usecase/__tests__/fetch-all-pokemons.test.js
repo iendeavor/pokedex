@@ -5,16 +5,16 @@ const { PokemonTypes } = require("../../entity/pokemon-types.js");
 const { Pokemon } = require("../../entity/pokemon.js");
 const { execute } = require("../fetch-all-pokemons.js");
 
-test("it should return and unknown error when an unexpected error happens", () => {
+test("it should return and unknown error when an unexpected error happens", async () => {
   const repo = new InMemoryPokemonRepo();
   repo["withError"]();
 
-  const res = execute({ repo });
+  const res = await execute({ repo });
 
   expect(res).toEqual({ status: "rejected", reason: "Unknown" });
 });
 
-test("it should return all pokemons ordered by increasing number otherwise", () => {
+test("it should return all pokemons ordered by increasing number otherwise", async () => {
   const repo = new InMemoryPokemonRepo();
   repo.insert(
     new Pokemon({
@@ -31,7 +31,7 @@ test("it should return all pokemons ordered by increasing number otherwise", () 
     })
   );
 
-  const res = execute({ repo });
+  const res = await execute({ repo });
 
   expect(res).toEqual({
     status: "fulfilled",

@@ -7,7 +7,7 @@ import { unwrap } from "../../entity/result.js";
 import { execute } from "../create-pokemon.js";
 import { PokemonRepo } from "../../repo/pokemon-repo.js";
 
-test("it should return a bad request error when request is invalid", () => {
+test("it should return a bad request error when request is invalid", async () => {
   const repo = new InMemoryPokemonRepo();
   const req = createReq({
     repo,
@@ -16,12 +16,12 @@ test("it should return a bad request error when request is invalid", () => {
     types: PokemonTypes["pikachu"](),
   });
 
-  const res = execute(req);
+  const res = await execute(req);
 
   expect(res).toEqual({ status: "rejected", reason: "BadRequest" });
 });
 
-test("it should return a conflict error when pokemon number already exists", () => {
+test("it should return a conflict error when pokemon number already exists", async () => {
   const repo = new InMemoryPokemonRepo();
   repo.insert(
     new Pokemon({
@@ -37,12 +37,12 @@ test("it should return a conflict error when pokemon number already exists", () 
     types: PokemonTypes["charmander"](),
   });
 
-  const res = execute(req);
+  const res = await execute(req);
 
   expect(res).toEqual({ status: "rejected", reason: "Conflict" });
 });
 
-test("it should return a unknown error when an unexpected error happens", () => {
+test("it should return a unknown error when an unexpected error happens", async () => {
   const repo = new InMemoryPokemonRepo();
   repo["withError"]();
   const req = createReq({
@@ -52,12 +52,12 @@ test("it should return a unknown error when an unexpected error happens", () => 
     types: PokemonTypes["pikachu"](),
   });
 
-  const res = execute(req);
+  const res = await execute(req);
 
   expect(res).toEqual({ status: "rejected", reason: "Unknown" });
 });
 
-test("it should return the pokemon number otherwise", () => {
+test("it should return the pokemon number otherwise", async () => {
   const repo = new InMemoryPokemonRepo();
   const req = createReq({
     repo,
@@ -66,7 +66,7 @@ test("it should return the pokemon number otherwise", () => {
     types: PokemonTypes["pikachu"](),
   });
 
-  const res = execute(req);
+  const res = await execute(req);
 
   expect(res).toEqual({
     status: "fulfilled",

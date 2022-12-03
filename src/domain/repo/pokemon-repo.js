@@ -1,19 +1,19 @@
 import { Pokemon } from "../entity/pokemon.js";
 
 /**
- * @typedef {import("../entity/result").Result<Pokemon, 'Conflict' | 'Unknown'>} InsertResult
+ * @typedef {Promise<import("../entity/result").Result<Pokemon, 'Conflict' | 'Unknown'>>} InsertResult
  */
 
 /**
- * @typedef {import("../entity/result").Result<Pokemon[], 'Unknown'>} FetchAllResult
+ * @typedef {Promise<import("../entity/result").Result<Pokemon[], 'Unknown'>>} FetchAllResult
  */
 
 /**
- * @typedef {import("../entity/result").Result<Pokemon, 'NotFound' | 'Unknown'>} FetchResult
+ * @typedef {Promise<import("../entity/result").Result<Pokemon, 'NotFound' | 'Unknown'>>} FetchResult
  */
 
 /**
- * @typedef {import("../entity/result").Result<undefined, 'NotFound' | 'Unknown'>} DeleteResult
+ * @typedef {Promise<import("../entity/result").Result<undefined, 'NotFound' | 'Unknown'>>} DeleteResult
  */
 
 export class PokemonRepo {

@@ -7,8 +7,8 @@ import { execute } from "../../domain/usecase/create-pokemon.js";
  * @param {PokemonRepo} repo
  */
 export const responseRouteCreatePokemon = (app, repo) => {
-  app.post("/", (req, res) => {
-    const result = execute({
+  app.post("/", async (req, res) => {
+    const result = await execute({
       repo,
       number: req.body.number,
       name: req.body.name,

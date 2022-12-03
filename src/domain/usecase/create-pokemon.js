@@ -14,14 +14,14 @@ import { unwrap } from "../entity/result.js";
  */
 
 /**
- * @typedef {import("../entity/result").Result<{ number: number, name: string, types: string[]}, 'BadRequest' | 'Conflict' | 'Unknown'>} Res
+ * @typedef {Promise<import("../entity/result").Result<{ number: number, name: string, types: string[]}, 'BadRequest' | 'Conflict' | 'Unknown'>>} Res
  */
 
 /**
  * @param {Req} req
  * @return {Res}
  */
-export const execute = (req) => {
+export const execute = async (req) => {
   const pokemonNumber = PokemonNumber.tryToPokemonNumber(req.number);
   const pokemonName = PokemonName.tryToPokemonName(req.name);
   const pokemonTypes = PokemonTypes.tryToPokemonTypes(req.types);
@@ -36,7 +36,7 @@ export const execute = (req) => {
     };
   }
 
-  const result = req.repo.insert(
+  const result = await req.repo.insert(
     new Pokemon({
       pokemonNumber: unwrap(pokemonNumber),
       pokemonName: unwrap(pokemonName),

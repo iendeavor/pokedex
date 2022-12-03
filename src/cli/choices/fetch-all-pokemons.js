@@ -6,7 +6,7 @@ import { execute } from "../../domain/usecase/fetch-all-pokemons.js";
  */
 export const fetchAllPokemons = async (repo) => {
   try {
-    const result = execute({
+    const result = await execute({
       repo,
     });
 

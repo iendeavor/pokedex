@@ -19,7 +19,7 @@ export class InMemoryPokemonRepo extends PokemonRepo {
    * @param {Pokemon} pokemon
    * @returns {import("../domain/repo/pokemon-repo").InsertResult}
    */
-  insert(pokemon) {
+  async insert(pokemon) {
     if (this.error) {
       return {
         status: "rejected",
@@ -57,7 +57,7 @@ export class InMemoryPokemonRepo extends PokemonRepo {
   /**
    * @returns {import("../domain/repo/pokemon-repo.js").FetchAllResult}
    */
-  fetchAll() {
+  async fetchAll() {
     if (this.error) {
       return {
         status: "rejected",
@@ -81,7 +81,7 @@ export class InMemoryPokemonRepo extends PokemonRepo {
    * @param {number} number
    * @returns {import("../domain/repo/pokemon-repo.js").FetchResult}
    */
-  fetch(number) {
+  async fetch(number) {
     if (this.error) {
       return {
         status: "rejected",
@@ -109,7 +109,7 @@ export class InMemoryPokemonRepo extends PokemonRepo {
    * @param {number} number
    * @returns {import("../domain/repo/pokemon-repo.js").DeleteResult}
    */
-  delete(number) {
+  async delete(number) {
     if (this.error) {
       return {
         status: "rejected",

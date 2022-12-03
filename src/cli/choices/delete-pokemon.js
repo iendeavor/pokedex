@@ -8,7 +8,7 @@ import { promptNumber } from "../prompt.js";
 export const deletePokemon = async (repo) => {
   try {
     const number = await promptNumber();
-    const result = execute({
+    const result = await execute({
       repo,
       number,
     });

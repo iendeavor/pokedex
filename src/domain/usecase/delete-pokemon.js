@@ -10,14 +10,14 @@ import { PokemonRepo } from "../repo/pokemon-repo.js";
  */
 
 /**
- * @typedef {import("../entity/result").Result<undefined, 'BadRequest' | 'NotFound' | 'Unknown'>} Res
+ * @typedef {Promise<import("../entity/result").Result<undefined, 'BadRequest' | 'NotFound' | 'Unknown'>>} Res
  */
 
 /**
  * @param {Req} req
  * @returns {Res}
  */
-export const execute = ({ repo, number }) => {
+export const execute = async ({ repo, number }) => {
   if (PokemonNumber.tryToPokemonNumber(number).status === "rejected") {
     return {
       status: "rejected",
@@ -25,7 +25,7 @@ export const execute = ({ repo, number }) => {
     };
   }
 
-  const result = repo.delete(number);
+  const result = await repo.delete(number);
   if (result.status === "rejected") {
     switch (result.reason) {
       case "NotFound":

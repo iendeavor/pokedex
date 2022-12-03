@@ -7,8 +7,8 @@ import { execute } from "../../domain/usecase/delete-pokemon.js";
  * @param {PokemonRepo} repo
  */
 export const responseRouteDeletePokemon = (app, repo) => {
-  app.delete("/:pokemonId", (req, res) => {
-    const result = execute({
+  app.delete("/:pokemonId", async (req, res) => {
+    const result = await execute({
       repo,
       number: parseInt(req.params.pokemonId, 10),
     });

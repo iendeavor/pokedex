@@ -9,15 +9,15 @@ import { PokemonRepo } from "../repo/pokemon-repo.js";
  */
 
 /**
- * @typedef {import("../entity/result").Result<{ number: number, name: string, types: string[] }[], 'Unknown'>} Res
+ * @typedef {Promise<import("../entity/result").Result<{ number: number, name: string, types: string[] }[], 'Unknown'>>} Res
  */
 
 /**
  * @param {Req} req
  * @returns {Res}
  */
-export const execute = ({ repo }) => {
-  const result = repo.fetchAll();
+export const execute = async ({ repo }) => {
+  const result = await repo.fetchAll();
 
   if (result.status === "rejected") {
     return {

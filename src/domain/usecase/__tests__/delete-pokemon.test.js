@@ -6,32 +6,38 @@ const { Pokemon } = require("../../entity/pokemon.js");
 const { PokemonRepo } = require("../../repo/pokemon-repo.js");
 const { execute } = require("../delete-pokemon.js");
 
-test("it should return an unknown error when an unexpected error happens", () => {
+test("it should return an unknown error when an unexpected error happens", async () => {
   const repo = new InMemoryPokemonRepo();
   repo["withError"]();
 
-  const res = execute(createReq({ repo, number: PokemonNumber["pikachu"]() }));
+  const res = await execute(
+    createReq({ repo, number: PokemonNumber["pikachu"]() })
+  );
 
   expect(res).toEqual({ status: "rejected", reason: "Unknown" });
 });
 
-test("it should return a bad request when request is invalid", () => {
+test("it should return a bad request when request is invalid", async () => {
   const repo = new InMemoryPokemonRepo();
 
-  const res = execute(createReq({ repo, number: PokemonNumber["bad"]() }));
+  const res = await execute(
+    createReq({ repo, number: PokemonNumber["bad"]() })
+  );
 
   expect(res).toEqual({ status: "rejected", reason: "BadRequest" });
 });
 
-test("it should return a not found error when the repo does not contain the pokemon", () => {
+test("it should return a not found error when the repo does not contain the pokemon", async () => {
   const repo = new InMemoryPokemonRepo();
 
-  const res = execute(createReq({ repo, number: PokemonNumber["pikachu"]() }));
+  const res = await execute(
+    createReq({ repo, number: PokemonNumber["pikachu"]() })
+  );
 
   expect(res).toEqual({ status: "rejected", reason: "NotFound" });
 });
 
-test("it should succeed otherwise", () => {
+test("it should succeed otherwise", async () => {
   const repo = new InMemoryPokemonRepo();
   repo.insert(
     new Pokemon({
@@ -41,7 +47,9 @@ test("it should succeed otherwise", () => {
     })
   );
 
-  const res = execute(createReq({ repo, number: PokemonNumber["pikachu"]() }));
+  const res = await execute(
+    createReq({ repo, number: PokemonNumber["pikachu"]() })
+  );
 
   expect(res).toEqual({
     status: "fulfilled",

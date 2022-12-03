@@ -45,6 +45,8 @@ export const run = async (repo) => {
         default:
           throw Error("Unexpected error");
       }
+
+      console.log("");
     } catch (error) {
       console.error(error);
     }

@@ -10,7 +10,7 @@ export const createPokemon = async (repo) => {
     const number = await promptNumber();
     const name = await promptName();
     const types = await promptTypes();
-    const result = execute({
+    const result = await execute({
       repo,
       number,
       name,
